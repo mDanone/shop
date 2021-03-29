@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %} Все товары {% endblock %}
+
+{% block body %}
+<div class="container-products">
+    <div class="container-categories">
+        {% for category in categories %}
+            <a href="{% url 'category_list' category.id %}"><p>{{category.name}}</p></a>
+            {% for sub in category.sub.all %}
+            <a href="{url 'subcategory_list' sub.id}" ><p style="margin-left: 30px;">{{sub.name}}</p></a>
+            {% endfor %}
+        {% endfor %}
+    </div>
+    <div class="container-products-list">
+        {% if goods %}
+            {% for good in goods %}
+            <div class="product">
+                <img class='product-image' src="https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" alt="">
+                <div class='name'>{{good.name}}</div>
+                <div class='price'>{{good.price}}</div>
+                {% if user.is_authenticated %}
+                    {% if good in cart.products.all %}
+                        <a href="{% url 'delete_from_cart' good.id %}"><button class='in-cart'>Удалить из корзины</button></a>
+                    {% else %}
+                        <a href="{% url 'add_to_cart' good.id %}"><button class='in-cart'>В корзину</button></a>
+                    {% endif %}
+                {% endif %}
+            </div>
+            {% endfor %}
+        {% else %}
+        <h1>Товаров нет</h1>
+        {% endif %}
+    </div>
+</div>
+
+
+
+{% endblock %}

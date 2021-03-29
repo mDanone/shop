@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{%block title%}Registration {% endblock %}
+
+{% block body %}
+<div class="form-reg">
+    <form method="POST">
+        {%csrf_token%}
+        {{form}}
+        <button type="submit" class="btn btn-success">Зарегистрироваться</button>
+    </form>
+</div>
+
+{% endblock %}

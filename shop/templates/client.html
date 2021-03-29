@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block title %} My Profile {% endblock %}
+
+{% block body %}
+    {{profile.username}}
+    <a href="{% url 'add_good' %}">Добавить товар</a>
+{% endblock %}

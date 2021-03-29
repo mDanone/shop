@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %} Корзина {% endblock %}
+
+{% block body %}
+
+{% if products%}
+    {% for product in products%}
+        {{ product.name }}
+        <a href="{% url 'delete_from_cart' product.id %}">Удалить из корзины</a>
+    {% endfor %}
+    К оплате {{sum}}
+{% else %}
+    <h1>В корзине нет товаров</h1>
+{% endif %}
+{% endblock %}
